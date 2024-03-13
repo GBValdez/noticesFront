@@ -1,0 +1,7 @@
+{
+  "name": "notices",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
