@@ -4,6 +4,7 @@ import { categoryDto } from '@category/interface/category.interface';
 import { IonicModule } from '@ionic/angular';
 import { AlertController } from '@ionic/angular/standalone';
 
+// Componente para mostrar registros en forma de tarjetas
 @Component({
   selector: 'app-group-card-category',
   templateUrl: './group-card-category.component.html',
@@ -11,13 +12,14 @@ import { AlertController } from '@ionic/angular/standalone';
   standalone: true,
   imports: [IonicModule, RouterModule],
 })
-export class GroupCardCategoryComponent implements OnInit {
+export class GroupCardCategoryComponent {
   @Output() deleteEvent: EventEmitter<number> = new EventEmitter<number>();
   @Input() categories: categoryDto[] = [];
   @Input() linkCategory: string = '';
+  @Input() canEdit: boolean = true;
+
   constructor(private alertCtrl: AlertController) {}
 
-  ngOnInit() {}
   async deleteCategory(category: categoryDto) {
     const WARNING_ALERT = await this.alertCtrl.create({
       header: 'Advertencia',

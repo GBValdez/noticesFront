@@ -14,7 +14,14 @@ export class SubMenuComponent implements OnInit {
   constructor(private authSvc: AuthService) {}
   isAdmin: boolean = false;
   ngOnInit() {
-    this.isAdmin = this.authSvc.getAuth()!.roles.includes('ADMIN');
+    this.authSvc.getObservable().subscribe((auth) => {
+      {
+        if (auth) this.isAdmin = auth.roles.includes('ADMIN');
+        else this.isAdmin = false;
+      }
+    });
+    if (this.authSvc.hasAuth())
+      this.isAdmin = this.authSvc.getAuth()!.roles.includes('ADMIN');
   }
   logout() {
     this.authSvc.removeAuth();

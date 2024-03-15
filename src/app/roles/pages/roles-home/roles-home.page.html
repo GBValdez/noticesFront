@@ -1,0 +1,15 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>roles_home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <h1>Roles</h1>
+  <app-group-card-category
+    linkCategory="roles"
+    [categories]="roles"
+    [canEdit]="false"
+    (deleteEvent)="deleteRole($event)"
+  ></app-group-card-category>
+</ion-content>

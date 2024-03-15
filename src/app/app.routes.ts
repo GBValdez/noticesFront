@@ -92,6 +92,33 @@ export const routes: Routes = [
             (m) => m.CategoryCreatePage
           ),
       },
+      {
+        path: 'roles',
+        loadComponent: () =>
+          import('./roles/pages/roles-home/roles-home.page').then(
+            (m) => m.RolesHomePage
+          ),
+        data: { isProtect: 20, roles: ['ADMIN'] },
+        canActivate: [AuthGuard],
+        title: 'Roles',
+      },
+      {
+        path: 'roles/create',
+        loadComponent: () =>
+          import('./roles/pages/roles-create/roles-create.page').then(
+            (m) => m.RolesCreatePage
+          ),
+        data: { isProtect: 20, roles: ['ADMIN'] },
+        canActivate: [AuthGuard],
+        title: 'Roles',
+      },
+      {
+        path: 'users',
+        loadComponent: () =>
+          import('./user/pages/user-home/user-home.page').then(
+            (m) => m.UserHomePage
+          ),
+      },
     ],
   },
   {

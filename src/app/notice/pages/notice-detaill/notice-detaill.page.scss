@@ -41,3 +41,23 @@ h3 {
   text-align: center;
   margin-top: 10px;
 }
+
+h5 {
+  margin: 0;
+  padding: 0%;
+  font-weight: bold;
+  font-size: 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-top: 10px;
+}
+.infoDetalle p {
+  margin: 0;
+  padding: 0%;
+  font-size: 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-top: 10px;
+}

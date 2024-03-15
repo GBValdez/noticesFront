@@ -3,12 +3,14 @@ import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { Observable } from 'rxjs';
 
+// Servicio generico para la gestión de entidades
 @Injectable({
   providedIn: 'root',
 })
 export class CommonsSvcService<dto, dtoCreation> {
   protected urlBase: string = '';
   constructor(protected http: HttpClient) {}
+  // Creacion de la url base para el consumo de los servicios
   set url(url: string) {
     this.urlBase = `${environment.api}/${url}`;
   }

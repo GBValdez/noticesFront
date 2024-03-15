@@ -25,11 +25,15 @@
         <ion-item slot="header" color="light">
           <ion-label>Categorías</ion-label>
         </ion-item>
-        <div class="ion-padding" slot="content" routerLink="/notice/category">
+        <div
+          class="ion-padding optionMenu"
+          slot="content"
+          routerLink="/notice/category"
+        >
           Ver categorías
         </div>
         <div
-          class="ion-padding"
+          class="ion-padding optionMenu"
           slot="content"
           routerLink="/notice/category/create"
         >
@@ -41,16 +45,32 @@
         <ion-item slot="header" color="light">
           <ion-label>Roles</ion-label>
         </ion-item>
-        <div class="ion-padding" slot="content" routerLink="/role-create">
+        <div
+          class="ion-padding optionMenu"
+          slot="content"
+          routerLink="/notice/roles/create"
+        >
           Crear rol
         </div>
-        <div class="ion-padding" slot="content">Ver roles</div>
+        <div
+          class="ion-padding optionMenu"
+          slot="content"
+          routerLink="/notice/roles"
+        >
+          Ver roles
+        </div>
       </ion-accordion>
       <ion-accordion value="four">
         <ion-item slot="header" color="light">
           <ion-label>Usuarios</ion-label>
         </ion-item>
-        <div class="ion-padding" slot="content">Ver usuarios</div>
+        <div
+          class="ion-padding optionMenu"
+          slot="content"
+          routerLink="/notice/users"
+        >
+          Ver usuarios
+        </div>
       </ion-accordion>
     </ion-accordion-group>
     }

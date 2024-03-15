@@ -43,3 +43,16 @@ h2 {
 .btnsAdmin ion-button {
   width: 48%;
 }
+h4 {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  font-size: 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.miniTitle {
+  margin-bottom: 5px;
+}

@@ -14,7 +14,7 @@ import { GroupCardsPage } from '@utils/components/group-cards/group-cards.page';
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, GroupCardsPage],
 })
-export class NoticeDetaillPage implements OnInit {
+export class NoticeDetaillPage {
   constructor(
     private routerAct: ActivatedRoute,
     private noticeSvc: NoticeService
@@ -23,9 +23,10 @@ export class NoticeDetaillPage implements OnInit {
   noticesRecommended: noticeDto[] = [];
   id: number = this.routerAct.snapshot.params['id'];
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.noticeSvc.getMethodById(this.id).subscribe((notice) => {
       this.notice = notice;
+      console.log(this.notice);
       this.noticeSvc
         .findByCategories(this.notice.categories.map((category) => category.id))
         .subscribe((notices) => {

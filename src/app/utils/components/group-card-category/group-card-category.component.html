@@ -10,12 +10,16 @@
       <div class="bodyCard">
         <p class="description">{{ item.description }}</p>
         <div class="btnsAdmin">
+          @if (canEdit) {
+
           <ion-button
             routerLink="/notice/{{ linkCategory }}/edit/{{ item.id }}"
             color="tertiary"
           >
             Editar
           </ion-button>
+          }
+
           <ion-button color="danger" (click)="deleteCategory(item)">
             Eliminar
           </ion-button>

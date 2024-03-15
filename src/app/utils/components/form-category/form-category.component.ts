@@ -16,7 +16,7 @@ import { RouterModule } from '@angular/router';
 import { categoryDto } from '@category/interface/category.interface';
 import { IonicModule } from '@ionic/angular';
 import { AlertController } from '@ionic/angular/standalone';
-
+// Formulario genérico para la creación de registros
 @Component({
   selector: 'app-form-category',
   templateUrl: './form-category.component.html',
@@ -24,17 +24,24 @@ import { AlertController } from '@ionic/angular/standalone';
   standalone: true,
   imports: [IonicModule, ReactiveFormsModule, RouterModule],
 })
-export class FormCategoryComponent implements OnInit {
+export class FormCategoryComponent {
+  // Evento para enviar la información del formulario
   @Output() submitCategory: EventEmitter<categoryDto> =
     new EventEmitter<categoryDto>();
+
+  // Link para redireccionar a la pagina de home que invoco este formulario
   @Input() linkCategory: string = '';
+
   form: FormGroup = this.fb.group({
     name: ['', [Validators.required, Validators.maxLength(45)]],
     description: ['', [Validators.required, Validators.maxLength(100)]],
   });
   constructor(private fb: FormBuilder, private alerCtrl: AlertController) {}
 
-  ngOnInit() {}
+  ionViewWillEnter() {
+    this.cleanForm();
+  }
+
   cleanForm() {
     this.form.patchValue({
       name: '',

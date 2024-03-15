@@ -15,18 +15,19 @@ import { AlertController } from '@ionic/angular/standalone';
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, GroupCardCategoryComponent],
 })
-export class CategoryHomePage implements OnInit {
+export class CategoryHomePage {
   categories: categoryDto[] = [];
   constructor(
     private categorySvc: CategoryService,
     private alertCtr: AlertController
   ) {}
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.categorySvc.getMethod().subscribe((categories) => {
       this.categories = categories;
     });
   }
+
   deleteCategory(id: number) {
     this.categorySvc.deleteMethod(id).subscribe(async () => {
       this.categories = this.categories.filter(

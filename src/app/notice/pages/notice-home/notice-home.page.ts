@@ -32,7 +32,7 @@ import { GroupCardsPage } from '@utils/components/group-cards/group-cards.page';
     GroupCardsPage,
   ],
 })
-export class NoticeHomePage implements OnInit {
+export class NoticeHomePage {
   form: FormGroup = this.fb.group({
     categories: [[]],
   });
@@ -44,7 +44,8 @@ export class NoticeHomePage implements OnInit {
     private categorySvc: CategoryService
   ) {}
   notices: noticeDto[] = [];
-  ngOnInit() {
+
+  ionViewWillEnter() {
     this.categorySvc.getMethod().subscribe((categories) => {
       this.catalogues = categories;
     });

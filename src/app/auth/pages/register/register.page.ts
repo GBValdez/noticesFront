@@ -28,7 +28,7 @@ import { AlertController } from '@ionic/angular/standalone';
     RouterModule,
   ],
 })
-export class RegisterPage implements OnInit {
+export class RegisterPage {
   form: FormGroup = this.fb.group({
     username: ['', [Validators.required, Validators.maxLength(45)]],
     password: [
@@ -54,6 +54,15 @@ export class RegisterPage implements OnInit {
     private router: Router,
     private alertCtrl: AlertController
   ) {}
+
+  onViewWillEnter() {
+    this.form.patchValue({
+      username: '',
+      password: '',
+      email: '',
+      name: '',
+    });
+  }
 
   register() {
     if (this.form.valid) {
@@ -82,5 +91,4 @@ export class RegisterPage implements OnInit {
       this.form.markAllAsTouched();
     }
   }
-  ngOnInit() {}
 }

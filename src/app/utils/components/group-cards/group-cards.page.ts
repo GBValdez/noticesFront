@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Observable } from 'rxjs';
@@ -15,9 +15,9 @@ import { AlertController } from '@ionic/angular/standalone';
   templateUrl: './group-cards.page.html',
   styleUrls: ['./group-cards.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, RouterModule],
+  imports: [IonicModule, CommonModule, FormsModule, RouterModule, DatePipe],
 })
-export class GroupCardsPage implements OnInit {
+export class GroupCardsPage {
   constructor(
     private authSvc: AuthService,
     private noticeSvc: NoticeService,
@@ -25,7 +25,8 @@ export class GroupCardsPage implements OnInit {
   ) {}
   isAdmin: boolean = false;
   @Input() notices: noticeDto[] = [];
-  ngOnInit() {
+
+  ionViewWillEnter() {
     this.isAdmin = this.authSvc.getAuth()!.roles.includes('ADMIN');
   }
   async deleteNotice(id: number) {

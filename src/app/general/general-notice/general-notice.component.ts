@@ -9,8 +9,6 @@ import { SubMenuComponent } from '@utils/components/sub-menu/sub-menu.component'
   standalone: true,
   imports: [IonicModule, SubMenuComponent],
 })
-export class GeneralNoticeComponent implements OnInit {
+export class GeneralNoticeComponent {
   constructor() {}
-
-  ngOnInit() {}
 }

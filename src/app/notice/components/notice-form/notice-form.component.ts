@@ -29,6 +29,12 @@ export class NoticeFormComponent implements OnInit {
     private alertCtrl: AlertController,
     private categorySvc: CategoryService
   ) {}
+  ngOnInit(): void {
+    this.categorySvc.getMethod().subscribe((categories) => {
+      this.categories = categories;
+    });
+  }
+
   form: FormGroup = this.fb.group({
     title: ['', [Validators.required, Validators.maxLength(45)]],
     description: ['', [Validators.required, Validators.maxLength(100)]],
@@ -36,11 +42,7 @@ export class NoticeFormComponent implements OnInit {
     imageUrl: ['', [Validators.required]],
     categories: ['', [Validators.required]],
   });
-  ngOnInit() {
-    this.categorySvc.getMethod().subscribe((categories) => {
-      this.categories = categories;
-    });
-  }
+
   cleanForm() {
     console.log('cleanForm', this.form.value);
     this.form.patchValue({

@@ -14,12 +14,14 @@ import { Observable } from 'rxjs';
 export class LoginService {
   private urlBase: string = environment.api;
   constructor(private httpClient: HttpClient) {}
+  // Metodo para autenticar un usuario
   login(credentials: credentialsDto): Observable<loginResDto> {
     return this.httpClient.post<loginResDto>(
       `${this.urlBase}/auth/login`,
       credentials
     );
   }
+  // Método para registrar un usuario
   register(credentials: registerBody): Observable<loginResDto> {
     return this.httpClient.post<loginResDto>(
       `${this.urlBase}/auth/register`,

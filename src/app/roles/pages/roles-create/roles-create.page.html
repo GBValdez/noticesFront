@@ -1,0 +1,11 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>roles_create</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <app-form-category (submitCategory)="sendData($event)" linkCategory="roles">
+    Crear role
+  </app-form-category>
+</ion-content>

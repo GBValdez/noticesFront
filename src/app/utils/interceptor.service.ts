@@ -9,6 +9,7 @@ import { AuthService } from '@auth/services/auth.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { Observable, catchError, finalize, throwError } from 'rxjs';
 
+// Servicio para la interceptación de las peticiones HTTP
 @Injectable({
   providedIn: 'root',
 })
@@ -22,23 +23,30 @@ export class InterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    // Verificación de la existencia de un token de autenticación
     let headers;
     if (this.authSvc.hasAuth())
+      // Inclusión del token de autenticación en la cabecera de la petición
       headers = req.headers.set(
         'Authorization',
         `Bearer ${this.authSvc.getAuth()?.token}`
       );
+
     const cloneRequest = req.clone({
       headers: headers,
     });
+
+    // Creación de un spinner para la visualización del proceso de carga
     const spinner = this.spinnerSvc.create({
       message: 'Loading...',
     });
     spinner.then((load) => {
       load.present();
     });
+
     return next.handle(cloneRequest).pipe(
       catchError((error) => {
+        // Manejo de errores
         if (error.status === 401) {
           this.authSvc.removeAuth();
         }
