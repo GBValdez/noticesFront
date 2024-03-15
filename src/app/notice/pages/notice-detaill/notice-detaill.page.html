@@ -31,7 +31,10 @@
       </div>
     </ion-card-content>
   </ion-card>
+  @if (noticesRecommended.length > 0) {
   <h3>Noticias recomendadas</h3>
+
+  }
   <app-group-cards [notices]="noticesRecommended"></app-group-cards>
 </ion-content>
 

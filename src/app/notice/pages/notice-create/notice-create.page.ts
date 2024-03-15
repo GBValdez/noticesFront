@@ -73,7 +73,8 @@ export class NoticeCreatePage implements OnInit {
           buttons: ['OK'],
         });
         alert.present();
-        this.router.navigate(['/home']);
+        this.cleanForm();
+        this.router.navigate(['/notice/home']);
       });
     } else {
       this.form.markAllAsTouched();

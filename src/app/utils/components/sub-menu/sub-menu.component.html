@@ -5,21 +5,23 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
-    <ion-button routerLink="/home" expand="full" routerLink="/home">
-      Inicio
-    </ion-button>
+    <ion-button routerLink="/notice/home" expand="full"> Inicio </ion-button>
     @if(isAdmin){
     <ion-accordion-group #accordionGroup>
       <ion-accordion value="first">
         <ion-item slot="header" color="light">
           <ion-label>Noticias</ion-label>
         </ion-item>
-        <div class="ion-padding" slot="content" routerLink="/notice-create">
+        <div
+          class="ion-padding optionMenu"
+          slot="content"
+          routerLink="/notice/notice-create"
+        >
           Crear Noticias
         </div>
       </ion-accordion>
 
-      <ion-accordion value="second">
+      <!-- <ion-accordion value="second">
         <ion-item slot="header" color="light">
           <ion-label>Categorías</ion-label>
         </ion-item>
@@ -43,15 +45,10 @@
           <ion-label>Usuarios</ion-label>
         </ion-item>
         <div class="ion-padding" slot="content">Ver usuarios</div>
-      </ion-accordion>
+      </ion-accordion> -->
     </ion-accordion-group>
     }
-    <ion-button
-      color="danger"
-      (click)="logout()"
-      expand="full"
-      routerLink="/home"
-    >
+    <ion-button color="danger" (click)="logout()" expand="full">
       Cerrar sesión
     </ion-button>
   </ion-content>

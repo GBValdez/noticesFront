@@ -70,7 +70,7 @@ export class RegisterPage implements OnInit {
           .then((alert) => {
             alert.present();
           });
-        this.router.navigate(['home']);
+        this.router.navigate(['/notice/home']);
       });
     } else {
       this.form.markAllAsTouched();

@@ -1,1 +1,11 @@
-<ion-router-outlet></ion-router-outlet>
+<app-sub-menu></app-sub-menu>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content id="main-content" [fullscreen]="true">
+  <ion-router-outlet></ion-router-outlet>
+</ion-content>

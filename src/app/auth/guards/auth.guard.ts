@@ -40,7 +40,7 @@ export class AuthGuard implements CanActivate {
     }
     if (!pass) {
       if (IS_PROTECT == 20) this.router.navigate(['login']);
-      else this.router.navigate(['home']);
+      else this.router.navigate(['/notice/home']);
     }
     return pass;
   }

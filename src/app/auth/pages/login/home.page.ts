@@ -74,7 +74,7 @@ export class HomePage {
           exp: decoded.exp,
           iat: decoded.iat,
         });
-        this.router.navigate(['home']);
+        this.router.navigate(['notice/home']);
       });
     } else {
       this.form.markAllAsTouched();

@@ -22,11 +22,14 @@ export class InterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const cloneRequest = req.clone({
-      headers: req.headers.set(
+    let headers;
+    if (this.authSvc.hasAuth())
+      headers = req.headers.set(
         'Authorization',
         `Bearer ${this.authSvc.getAuth()?.token}`
-      ),
+      );
+    const cloneRequest = req.clone({
+      headers: headers,
     });
     const spinner = this.spinnerSvc.create({
       message: 'Loading...',
