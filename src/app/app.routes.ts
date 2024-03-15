@@ -8,6 +8,7 @@ export const routes: Routes = [
       import('@auth/pages/login/home.page').then((m) => m.HomePage),
     data: { isProtect: 30 },
     canActivate: [AuthGuard],
+    title: 'Login',
   },
   {
     path: 'register',
@@ -15,6 +16,7 @@ export const routes: Routes = [
       import('@auth/pages/register/register.page').then((m) => m.RegisterPage),
     data: { isProtect: 30 },
     canActivate: [AuthGuard],
+    title: 'Registrarme',
   },
   // {
   //   path: '',
@@ -36,6 +38,7 @@ export const routes: Routes = [
           ),
         data: { isProtect: 20 },
         canActivate: [AuthGuard],
+        title: 'Noticias',
       },
       {
         path: 'notice-create',
@@ -45,6 +48,7 @@ export const routes: Routes = [
           ),
         data: { isProtect: 20, roles: ['ADMIN'] },
         canActivate: [AuthGuard],
+        title: 'Crear Noticia',
       },
       {
         path: 'category-home',
@@ -52,6 +56,9 @@ export const routes: Routes = [
           import('@category/category-home/category-home.page').then(
             (m) => m.CategoryHomePage
           ),
+        title: 'Categorias',
+        data: { isProtect: 20, roles: ['ADMIN'] },
+        canActivate: [AuthGuard],
       },
       {
         path: 'detail/:id',
@@ -59,6 +66,8 @@ export const routes: Routes = [
           import('@notice/pages/notice-detaill/notice-detaill.page').then(
             (m) => m.NoticeDetaillPage
           ),
+        data: { isProtect: 20 },
+        canActivate: [AuthGuard],
       },
     ],
   },

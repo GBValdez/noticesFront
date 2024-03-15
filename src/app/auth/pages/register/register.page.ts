@@ -12,7 +12,7 @@ import { LoginService } from '@auth/services/login.service';
 import { decodeJwtInterface } from '@auth/intefaces/auth';
 import { jwtDecode } from 'jwt-decode';
 import { AuthService } from '@auth/services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AlertController } from '@ionic/angular/standalone';
 
 @Component({
@@ -20,7 +20,13 @@ import { AlertController } from '@ionic/angular/standalone';
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    IonicModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+  ],
 })
 export class RegisterPage implements OnInit {
   form: FormGroup = this.fb.group({
