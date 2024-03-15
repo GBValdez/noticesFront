@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title> Login </ion-title>
     <ion-buttons slot="end">
-      <ion-button> Registrarse </ion-button>
+      <ion-button routerLink="/register"> Registrarse </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -16,6 +16,9 @@
 
   <div id="container">
     <ion-card class="cardLogin">
+      <ion-card-header>
+        <ion-card-title> Iniciar Sesión </ion-card-title>
+      </ion-card-header>
       <ion-card-content>
         <form [formGroup]="form" (ngSubmit)="login()">
           <ion-list>
@@ -26,6 +29,7 @@
                 fill="solid"
                 placeholder="Ingrese el email"
                 formControlName="username"
+                errorText="El email es requerido"
               ></ion-input>
             </ion-item>
             <ion-item>
@@ -36,11 +40,14 @@
                 type="password"
                 placeholder="Ingrese el la contraseña"
                 formControlName="password"
+                errorText="La contraseña es requerida"
               >
               </ion-input>
             </ion-item>
             <ion-item>
-              <ion-button expand="full" color="primary"> Ingresar </ion-button>
+              <ion-button expand="full" color="primary" type="summit">
+                Ingresar
+              </ion-button>
             </ion-item>
           </ion-list>
         </form>

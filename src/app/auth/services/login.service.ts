@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { credentialsDto, loginResDto } from '@auth/intefaces/auth';
+import {
+  credentialsDto,
+  loginResDto,
+  registerBody,
+} from '@auth/intefaces/auth';
 import { environment } from '@env/environment';
 import { Observable } from 'rxjs';
 
@@ -13,6 +17,12 @@ export class LoginService {
   login(credentials: credentialsDto): Observable<loginResDto> {
     return this.httpClient.post<loginResDto>(
       `${this.urlBase}/auth/login`,
+      credentials
+    );
+  }
+  register(credentials: registerBody): Observable<loginResDto> {
+    return this.httpClient.post<loginResDto>(
+      `${this.urlBase}/auth/register`,
       credentials
     );
   }

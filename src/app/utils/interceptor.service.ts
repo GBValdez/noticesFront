@@ -6,7 +6,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from '@auth/services/auth.service';
-import { LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { Observable, catchError, finalize, throwError } from 'rxjs';
 
 @Injectable({
@@ -15,7 +15,8 @@ import { Observable, catchError, finalize, throwError } from 'rxjs';
 export class InterceptorService implements HttpInterceptor {
   constructor(
     public spinnerSvc: LoadingController,
-    private authSvc: AuthService
+    private authSvc: AuthService,
+    private alertCtrl: AlertController
   ) {}
   intercept(
     req: HttpRequest<any>,
@@ -39,10 +40,28 @@ export class InterceptorService implements HttpInterceptor {
           this.authSvc.removeAuth();
         }
         if (error.error.message) {
-          console.log(error.error.message);
+          this.alertCtrl
+            .create({
+              header: 'Error',
+              message: error.error.message,
+              buttons: ['OK'],
+            })
+            .then((alert) => {
+              alert.present();
+            });
         }
         if (error.error.errors) {
-          console.log(error.error.errors);
+          const errors: string[] = error.error.errors;
+          const message = errors.join('\n');
+          this.alertCtrl
+            .create({
+              header: 'Error',
+              message: message,
+              buttons: ['OK'],
+            })
+            .then((alert) => {
+              alert.present();
+            });
         }
         return throwError(error);
       }),

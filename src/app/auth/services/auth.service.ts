@@ -5,7 +5,7 @@ import { auth, credentialsDto, loginResDto } from '@auth/intefaces/auth';
 import { environment } from '@env/environment';
 import { AES } from 'crypto-js';
 import { BehaviorSubject, Observable } from 'rxjs';
-
+import * as CryptoJS from 'crypto-js';
 @Injectable({
   providedIn: 'root',
 })

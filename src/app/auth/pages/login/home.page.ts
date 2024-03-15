@@ -5,6 +5,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { decodeJwtInterface } from '@auth/intefaces/auth';
 import { AuthService } from '@auth/services/auth.service';
 import { LoginService } from '@auth/services/login.service';
 import {
@@ -20,7 +22,10 @@ import {
   IonList,
   IonItem,
   IonButtons,
+  IonCardTitle,
+  IonCardHeader,
 } from '@ionic/angular/standalone';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-home',
@@ -41,6 +46,9 @@ import {
     IonList,
     IonItem,
     IonButtons,
+    RouterModule,
+    IonCardTitle,
+    IonCardHeader,
   ],
 })
 export class HomePage {
@@ -48,13 +56,28 @@ export class HomePage {
     username: ['', Validators.required],
     password: ['', Validators.required],
   });
-  constructor(private fb: FormBuilder, private loginSvc: LoginService) {}
+  constructor(
+    private fb: FormBuilder,
+    private loginSvc: LoginService,
+    private authSvc: AuthService,
+    private router: Router
+  ) {}
   login() {
     if (this.form.valid) {
-      console.log('amigo');
       this.loginSvc.login(this.form.value).subscribe((res) => {
-        console.log(res);
+        const decoded: decodeJwtInterface = jwtDecode(res.token);
+        this.authSvc.setAuth({
+          token: res.token,
+          roles: decoded.roles,
+          username: decoded.sub,
+          email: decoded.email,
+          exp: decoded.exp,
+          iat: decoded.iat,
+        });
+        this.router.navigate(['home']);
       });
+    } else {
+      this.form.markAllAsTouched();
     }
   }
 }

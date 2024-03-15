@@ -4,11 +4,12 @@
 
 export const environment = {
   production: false,
-  api: 'http//localhost:8081/api',
+  api: 'http://localhost:8081/api',
   key: 'XNf9iXHGQvYcGj3C4KTANHxKukVLyCYV',
 };
 
 /*
+http://localhost:8081/doc/swagger-ui/index.html#/auth-controller/login
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
  *

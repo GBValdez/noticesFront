@@ -1,0 +1,92 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> Registrarse </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <ion-card class="cardLogin">
+      <ion-card-header>
+        <ion-card-title> Registrarse </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <form [formGroup]="form" (ngSubmit)="register()">
+          <ion-list>
+            <ion-item>
+              <ion-input
+                label="Nombre"
+                label-placement="floating"
+                fill="solid"
+                placeholder="Ingrese su nombre completo"
+                formControlName="name"
+                errorText="El nombre es requerido"
+                maxlength="100"
+              >
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input
+                label="Nombre de usuario"
+                label-placement="floating"
+                fill="solid"
+                placeholder="Ingrese el email"
+                formControlName="username"
+                errorText="El nombre de usuario es requerido"
+                maxlength="45"
+              ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input
+                label="email"
+                label-placement="floating"
+                fill="solid"
+                placeholder="Ingrese el email"
+                formControlName="email"
+                maxlength="100"
+                [errorText]=" 
+                this.form.get('email')!.hasError('required')?'El usuario es requerido':
+                this.form.get('email')!.hasError('email')?'El email no es valido':''"
+              >
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input
+                label="Contraseña"
+                label-placement="floating"
+                fill="solid"
+                maxlength="100"
+                type="password"
+                placeholder="Ingrese el la contraseña"
+                formControlName="password"
+                [errorText]="
+                form.get('password')!.hasError('required')?'La contraseña es requerida':
+                form.get('password')!.hasError('pattern')?'La contraseña debe contener: 8 caracteres de longitud, una letra mayúscula , una letra minúscula, al menos un numero, un carácter especial':''
+                "
+              >
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-button
+                slot="end"
+                expand="full"
+                color="primary"
+                type="summit"
+                [disabled]="!form.valid"
+              >
+                Ingresar
+              </ion-button>
+            </ion-item>
+          </ion-list>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
