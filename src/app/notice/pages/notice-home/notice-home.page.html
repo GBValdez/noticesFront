@@ -17,6 +17,7 @@
             placeholder="Buscar"
             formControlName="categories"
             [multiple]="true"
+            (ionChange)="getData()"
           >
             @for (category of catalogues; track $index) {
             <ion-select-option [value]="category.id"
@@ -28,35 +29,5 @@
       </form>
     </ion-card-content>
   </ion-card>
-  <section class="noticesGroup">
-    @for (item of notices; track $index) {
-    <ion-card class="noticeCard">
-      <img [src]="item.imageUrl" class="imgCard" />
-      <ion-card-header>
-        <ion-card-title>
-          <h2>{{ item.title }}</h2>
-        </ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <div class="bodyCard">
-          <p class="description">{{ item.description }}</p>
-          <div class="categoriesGroup">
-            @for (category of item.categories; track $index) {
-
-            <ion-chip [disabled]="true">
-              <ion-label>{{ category.name }}</ion-label>
-            </ion-chip>
-            }
-          </div>
-          <ion-button
-            expand="full"
-            color="primary"
-            routerLink="/notice/{{ item.id }}"
-            >Ver más</ion-button
-          >
-        </div>
-      </ion-card-content>
-    </ion-card>
-    }
-  </section>
+  <app-group-cards [notices]="notices"></app-group-cards>
 </ion-content>

@@ -15,6 +15,8 @@ import { NoticeService } from '@notice/services/notice.service';
 import { noticeDto } from '@notice/interface/notice.interface';
 import { categoryDto } from '@category/interface/category.interface';
 import { CategoryService } from '@category/services/category.service';
+import { Observable } from 'rxjs';
+import { GroupCardsPage } from '@utils/components/group-cards/group-cards.page';
 
 @Component({
   selector: 'app-notice-home',
@@ -27,11 +29,12 @@ import { CategoryService } from '@category/services/category.service';
     ReactiveFormsModule,
     RouterModule,
     SubMenuComponent,
+    GroupCardsPage,
   ],
 })
 export class NoticeHomePage implements OnInit {
   form: FormGroup = this.fb.group({
-    categories: [''],
+    categories: [[]],
   });
 
   catalogues: categoryDto[] = [];
@@ -45,8 +48,15 @@ export class NoticeHomePage implements OnInit {
     this.categorySvc.getMethod().subscribe((categories) => {
       this.catalogues = categories;
     });
-
-    this.noticeSvc.getMethod().subscribe((notices) => {
+    this.getData();
+  }
+  getData() {
+    let obs: Observable<noticeDto[]>;
+    if (this.form.get('categories')?.value.length == 0)
+      obs = this.noticeSvc.getMethod();
+    else
+      obs = this.noticeSvc.findByCategories(this.form.get('categories')?.value);
+    obs.subscribe((notices) => {
       this.notices = notices;
       this.notices.forEach((notice) => {
         notice.description = notice.description.substring(0, 100);

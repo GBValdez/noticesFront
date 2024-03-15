@@ -13,8 +13,13 @@ export class NoticeService extends CommonsSvcService<
   noticeDto,
   noticeCreationDto
 > {
-  constructor(httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient) {
     super(httpClient);
     this.url = 'notice';
+  }
+  findByCategories(categories: number[]) {
+    return this.httpClient.get<noticeDto[]>(`${this.urlBase}/findByCategory`, {
+      params: { idsCatalogue: categories.toString() },
+    });
   }
 }

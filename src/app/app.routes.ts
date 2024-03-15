@@ -47,4 +47,15 @@ export const routes: Routes = [
         (m) => m.CategoryHomePage
       ),
   },
+  {
+    path: 'notice/:id',
+    loadComponent: () =>
+      import('@notice/pages/notice-detaill/notice-detaill.page').then(
+        (m) => m.NoticeDetaillPage
+      ),
+  },
+  {
+    path: 'group-cards',
+    loadComponent: () => import('./utils/components/group-cards/group-cards.page').then( m => m.GroupCardsPage)
+  },
 ];

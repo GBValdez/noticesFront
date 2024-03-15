@@ -1,0 +1,38 @@
+@if (notice) {
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Detalles de la noticia: {{notice.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card class="cardNotice">
+    <img [src]="notice.imageUrl" class="imgCard" />
+    <ion-card-header>
+      <ion-card-title>
+        <h2>{{ notice.title }}</h2>
+      </ion-card-title>
+      <ion-card-subtitle>
+        <h4>Descripción</h4>
+        {{notice.description}}
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="bodyCard">
+        <h4>Cuerpo</h4>
+        <p class="body">{{ notice.body }}</p>
+        <div class="categoriesGroup">
+          @for (category of notice.categories; track $index) {
+          <ion-chip [disabled]="true">
+            <ion-label>{{ category.name }}</ion-label>
+          </ion-chip>
+          }
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <h3>Noticias recomendadas</h3>
+  <app-group-cards [notices]="noticesRecommended"></app-group-cards>
+</ion-content>
+
+}

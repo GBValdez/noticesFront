@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CommonsSvcService<dto, dtoCreation> {
-  private urlBase: string = '';
-  constructor(private http: HttpClient) {}
+  protected urlBase: string = '';
+  constructor(protected http: HttpClient) {}
   set url(url: string) {
     this.urlBase = `${environment.api}/${url}`;
   }
