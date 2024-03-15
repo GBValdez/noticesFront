@@ -24,6 +24,16 @@
           routerLink="/notice/detail/{{ item.id }}"
           >Ver más</ion-button
         >
+        @if(isAdmin){
+        <div class="btnsAdmin">
+          <ion-button routerLink="/notice/edit/{{ item.id }}" color="tertiary">
+            Editar
+          </ion-button>
+          <ion-button color="danger" (click)="deleteNotice(item.id)">
+            Eliminar
+          </ion-button>
+        </div>
+        }
       </div>
     </ion-card-content>
   </ion-card>

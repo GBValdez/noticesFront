@@ -18,11 +18,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     title: 'Registrarme',
   },
-  // {
-  //   path: '',
-  //   redirectTo: 'login',
-  //   pathMatch: 'full',
-  // },,
+
   {
     path: 'notice',
     loadComponent: () =>
@@ -41,7 +37,7 @@ export const routes: Routes = [
         title: 'Noticias',
       },
       {
-        path: 'notice-create',
+        path: 'create',
         loadComponent: () =>
           import('@notice/pages/notice-create/notice-create.page').then(
             (m) => m.NoticeCreatePage
@@ -50,16 +46,7 @@ export const routes: Routes = [
         canActivate: [AuthGuard],
         title: 'Crear Noticia',
       },
-      {
-        path: 'category-home',
-        loadComponent: () =>
-          import('@category/category-home/category-home.page').then(
-            (m) => m.CategoryHomePage
-          ),
-        title: 'Categorias',
-        data: { isProtect: 20, roles: ['ADMIN'] },
-        canActivate: [AuthGuard],
-      },
+
       {
         path: 'detail/:id',
         loadComponent: () =>
@@ -69,6 +56,47 @@ export const routes: Routes = [
         data: { isProtect: 20 },
         canActivate: [AuthGuard],
       },
+      {
+        path: 'edit/:id',
+        loadComponent: () =>
+          import('@notice/pages/notice-edit/notice-edit.page').then(
+            (m) => m.NoticeEditPage
+          ),
+        data: { isProtect: 20, roles: ['ADMIN'] },
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'category',
+        loadComponent: () =>
+          import('@category/pages/category-home/category-home.page').then(
+            (m) => m.CategoryHomePage
+          ),
+        title: 'Categorias',
+        data: { isProtect: 20, roles: ['ADMIN'] },
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'category/edit/:id',
+        loadComponent: () =>
+          import('@category/pages/category-edit/category-edit.page').then(
+            (m) => m.CategoryEditPage
+          ),
+        title: 'Categorías',
+        data: { isProtect: 20, roles: ['ADMIN'] },
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'category/create',
+        loadComponent: () =>
+          import('./category/pages/category-create/category-create.page').then(
+            (m) => m.CategoryCreatePage
+          ),
+      },
     ],
+  },
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
   },
 ];

@@ -24,18 +24,7 @@ h2 {
   white-space: nowrap;
   overflow: hidden;
 }
-.imgCard {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  object-position: center;
-}
-.categoriesGroup {
-  width: 100%;
-  overflow-x: auto;
-  margin-bottom: 5px;
-  display: flex;
-}
+
 .btnsAdmin {
   display: flex;
   justify-content: space-between;

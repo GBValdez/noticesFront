@@ -1,11 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Crear Noticia</ion-title>
+    <ion-title>notice-edit</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" id="main-content">
-  <app-notice-form (submitNotice)="sendData($event)"
-    >Crear noticia</app-notice-form
+  <app-notice-form #form (submitNotice)="sendData($event)"
+    >Editar noticia "{{titleNotice}}"</app-notice-form
   >
 </ion-content>

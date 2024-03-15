@@ -1,0 +1,14 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>category_home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <h1>Categorías</h1>
+  <app-group-card-category
+    linkCategory="category"
+    [categories]="categories"
+    (deleteEvent)="deleteCategory($event)"
+  ></app-group-card-category>
+</ion-content>

@@ -1,0 +1,102 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title><ng-content></ng-content></ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <form [formGroup]="form" (ngSubmit)="sendForm()">
+      <ion-list>
+        <ion-item>
+          <ion-input
+            label="Titulo"
+            labelPlacement="floating"
+            type="text"
+            maxlength="45"
+            formControlName="title"
+            errorText="El título es requerido"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-textarea
+            label="Descripción"
+            labelPlacement="floating"
+            maxlength="100"
+            formControlName="description"
+            errorText="La descripción es requerida"
+          ></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-textarea
+            label="Cuerpo"
+            labelPlacement="floating"
+            formControlName="body"
+            errorText="El cuerpo de la noticia es requerido"
+          ></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-select
+            [multiple]="true"
+            label="Categoría "
+            labelPlacement="floating"
+            formControlName="categories"
+          >
+            @for (item of categories; track $index) {
+            <ion-select-option [value]="item.id">{{
+              item.name
+            }}</ion-select-option>
+
+            }
+          </ion-select>
+        </ion-item>
+        @if ( this.form.get('categories')!.hasError('required') &&
+        this.form.get('categories')!.touched ) {
+        <ion-item>
+          <ion-label color="danger">
+            Seleccione al menos una categoría
+          </ion-label>
+        </ion-item>
+
+        }
+        <ion-item>
+          <ion-input
+            label="Imagen"
+            labelPlacement="floating"
+            formControlName="imageUrl"
+            errorText="La imagen es requerida"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-buttons slot="end">
+            <ion-button
+              expand="full"
+              color="primary"
+              type="button"
+              fill="solid"
+              color="danger"
+              routerLink="/notice/home"
+            >
+              Cancelar
+            </ion-button>
+            <ion-button
+              expand="full"
+              fill="solid"
+              color="secondary"
+              type="button"
+              (click)="cleanForm()"
+            >
+              Limpiar
+            </ion-button>
+            <ion-button
+              expand="full"
+              fill="solid"
+              color="primary"
+              type="submit"
+              [disabled]="!form.valid"
+            >
+              Guardar cambios
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+      </ion-list>
+    </form>
+  </ion-card-content>
+</ion-card>
