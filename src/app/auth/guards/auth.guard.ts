@@ -23,6 +23,12 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
+    //Validamos si el token ha expirado
+    if (this.authSvc.hasAuth()) {
+      const EXP_DATA: number = this.authSvc.getAuth()!.exp;
+      const EXP_DATE = new Date(EXP_DATA * 1000);
+      if (EXP_DATE < new Date()) this.authSvc.removeAuth();
+    }
     // Obtenemos el tipo de seguridad que se le va aplicar a la ruta
     // 20: Solo usuarios autenticados
     // 25: Sin seguridad

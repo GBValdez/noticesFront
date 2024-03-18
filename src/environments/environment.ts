@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: 'https://noticesback.onrender.com/api',
+  api: 'http://localhost:8080/api',
   key: 'XNf9iXHGQvYcGj3C4KTANHxKukVLyCYV',
 };
 

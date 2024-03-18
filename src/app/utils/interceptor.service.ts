@@ -25,12 +25,19 @@ export class InterceptorService implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     // Verificación de la existencia de un token de autenticación
     let headers;
-    if (this.authSvc.hasAuth())
+    if (this.authSvc.hasAuth()) {
+      const EXP_DATA: number = this.authSvc.getAuth()!.exp;
+      const EXP_DATE = new Date(EXP_DATA * 1000);
+      if (EXP_DATE < new Date()) {
+        this.authSvc.removeAuth();
+      } else {
+        headers = req.headers.set(
+          'Authorization',
+          `Bearer ${this.authSvc.getAuth()?.token}`
+        );
+      }
       // Inclusión del token de autenticación en la cabecera de la petición
-      headers = req.headers.set(
-        'Authorization',
-        `Bearer ${this.authSvc.getAuth()?.token}`
-      );
+    }
 
     const cloneRequest = req.clone({
       headers: headers,
